@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "flight-res-sys-node-server-app",
+  "version": "1.0.0",
+  "description": "Node server app for flight reservation system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Mohammed Sadath Hasan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
