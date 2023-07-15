@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+../.DS_Store
+../flight-res-sys-node-server-app/node_modules
 
 # testing
 /coverage

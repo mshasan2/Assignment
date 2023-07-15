@@ -1,9 +1,12 @@
 import './App.css';
+import Delta from './delta/index';
+
 
 function App() {
   return (
     <div>
-      <h1>Assignment</h1>
+      <Delta/>
+      
     </div>
   );
 }

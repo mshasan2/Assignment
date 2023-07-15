@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import {searchFlightsByOriginThunk, searchFlightsByDestinationThunk, suggestThunk} from '../../../services/flights-thunks';
 import { useSelector, useDispatch} from "react-redux";
 import { useState } from 'react';
@@ -7,7 +8,8 @@ import SearchList from './search-list';
 
 const SearchComponent = () => {
     const {searchData} = useSelector(state => state.searchData)
-    let {suggestData} = useSelector(state => state.suggestData)
+    const {suggestData} = useSelector(state => state.suggestData)
+    const [suggestedArray, setsuggestedArray] = useState(suggestData);
     const [search, setSearch] = useState("");
     const [searchType, setSearchType] = useState("origin");
     const [suggestSearch, setSuggestSearch] = useState("");
@@ -28,20 +30,26 @@ const SearchComponent = () => {
     }
 
     const suggestSearchHandler = (e) => {
-        if (e.target.value === "") {
+        if (e.target.value === "") {     
             setSuggestSearch("");
-            suggestData = [];
-            return;
+            setsuggestedArray([]);
         } else {
             setSuggestSearch(e.target.value);
-            dispatch(suggestThunk(suggestSearch))
+            
         }
     }
 
-    const suggestSearchNames = () => {
-        dispatch(suggestThunk(suggestSearch))
+    useEffect(() => {
+        if (suggestSearch !== "") {
+            dispatch(suggestThunk(suggestSearch))
+            
+        }
     }
+    , [suggestSearch, dispatch])
 
+    useEffect(() => {
+        setsuggestedArray(suggestData);
+      }, [suggestData]);
     
     return (
         
@@ -93,17 +101,17 @@ const SearchComponent = () => {
                         onChange={suggestSearchHandler}
                         value = {suggestSearch}
                         />
-                    <button className="btn btn-primary" type="button"
+                    {/* <button className="btn btn-primary" type="button"
                         onClick={suggestSearchNames}
-                        >Search</button>
+                        >Search</button> */}
                     </div>
 
                 </div>
                 <div>
-                    {JSON.stringify(suggestData)}
-                {suggestData.length > 0 ? (
+                    
+                {suggestedArray.length > 0 ? (
                     <ul className="list-group">
-                        {suggestData.slice(0, 7).map((station, index) => (
+                        {suggestedArray.map((station, index) => (
                         <li className="list-group-item" key={index}>
                             {station}
                         </li>

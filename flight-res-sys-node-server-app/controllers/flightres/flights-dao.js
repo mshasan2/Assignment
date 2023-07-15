@@ -84,6 +84,6 @@ export const suggest = async (query) => {
   
       const combinedUniqueElements = Array.from(new Set([...destinations, ...origins]));
   
-      return combinedUniqueElements;
+      return combinedUniqueElements.slice(0, 10);
 }
 
