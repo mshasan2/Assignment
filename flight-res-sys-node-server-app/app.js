@@ -12,5 +12,5 @@ app.use(express.json());
 mongoose.connect(CONNECTION_STRING);
 FlightController(app);
 
-app.get('/hello', (req, res) => {res.send('Hello World!')})
+app.get('/hello', (req, res) => {res.sendStatus(200)})
 app.listen(4000)
