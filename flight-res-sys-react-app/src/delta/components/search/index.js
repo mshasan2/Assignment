@@ -10,24 +10,10 @@ const SearchComponent = () => {
     const {searchData} = useSelector(state => state.searchData)
     const {suggestData} = useSelector(state => state.suggestData)
     const [suggestedArray, setsuggestedArray] = useState(suggestData);
-    const [search, setSearch] = useState("");
     const [searchType, setSearchType] = useState("origin");
     const [suggestSearch, setSuggestSearch] = useState("");
     
-
-    const searchHandler = (e) => {
-        setSearch(e.target.value);
-    }
     const dispatch = useDispatch();
-
-    const searchFlights = () => {
-        if(searchType === "origin") {
-            
-            dispatch(searchFlightsByOriginThunk(search))
-        } else {
-            dispatch(searchFlightsByDestinationThunk(search))
-        }
-    }
 
     const suggestSearchHandler = (e) => {
         if (e.target.value === "") {     
@@ -50,12 +36,34 @@ const SearchComponent = () => {
     useEffect(() => {
         setsuggestedArray(suggestData);
       }, [suggestData]);
+
+    const searchFlightDetails = (station) => {
+        if(searchType === "origin") {
+            
+            dispatch(searchFlightsByOriginThunk(station))
+        } else {
+            dispatch(searchFlightsByDestinationThunk(station))
+        }
+    }
+
+    const suggestedArrayClickHandler = (station) => {
+        setsuggestedArray([]);
+        setSuggestSearch(station);
+        searchFlightDetails(station);
+    }
+
+    const searchButtonHandler = () => {
+        suggestedArrayClickHandler(suggestSearch);       
+    }
+
+
     
     return (
         
             <div>
+
                 <div>
-                    <h1>Search Flights from/to Origin/Destination using the Search API</h1>
+                    <h2>Search Flight Details using Origin/Destination</h2>
                     <div className="ms-2 ">
                         <span className=" d-inline ">
                             
@@ -80,47 +88,40 @@ const SearchComponent = () => {
                         
                     </div>
 
-                    <div className="input-group mb-3">
 
+                    <div className="input-group mb-3">
+            
                         <input className="form-control"
-                        onChange={searchHandler}
-                        value = {search}/>
+                            onChange={suggestSearchHandler}
+                            value = {suggestSearch}
+                            />
                         <button className="btn btn-primary" type="button"
-                        onClick={searchFlights}
+                        onClick={searchButtonHandler}
                         >Search</button>
-                    </div>
-                    <div>
-                        <SearchList searchData={searchData}/>
-                    </div>
-                </div>
-
-                <div>
-                    <h1>AutoSuggest Station Name using the Suggest API</h1>
-                    <div className="input-group mb-3">
-                    <input className="form-control"
-                        onChange={suggestSearchHandler}
-                        value = {suggestSearch}
-                        />
-                    {/* <button className="btn btn-primary" type="button"
-                        onClick={suggestSearchNames}
-                        >Search</button> */}
+                        
                     </div>
 
                 </div>
                 <div>
-                    
-                {suggestedArray.length > 0 ? (
-                    <ul className="list-group">
-                        {suggestedArray.map((station, index) => (
-                        <li className="list-group-item" key={index}>
-                            {station}
-                        </li>
-                        ))}
-                    </ul>
-                    ) : null
-                }
+
+                    {suggestedArray.length > 0 ? (
+                        <ul className="list-group">
+                            {suggestedArray.map((station, index) => (
+                            <li className="list-group-item" key={index} onClick = {() => suggestedArrayClickHandler(station)}>
+                                {station}
+                            </li>
+                            ))}
+                        </ul>
+                        ) : null
+                    }
 
                 </div>
+
+                <div>
+                    <SearchList searchData={searchData}/>
+                </div>
+
+                
 
             </div>
        
