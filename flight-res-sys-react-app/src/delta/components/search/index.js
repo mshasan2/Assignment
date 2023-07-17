@@ -4,6 +4,7 @@ import {searchFlightsByOriginThunk, searchFlightsByDestinationThunk, suggestThun
 import { useSelector, useDispatch} from "react-redux";
 import { useState } from 'react';
 import SearchList from './search-list';
+import './index.css';
 
 
 const SearchComponent = () => {
@@ -60,10 +61,10 @@ const SearchComponent = () => {
     
     return (
         
-            <div>
+            <div className='bg-image rounded p-2'>
 
                 <div>
-                    <h2>Search Flight Details using Origin/Destination</h2>
+                    <h4>Search Flight Details using Origin/Destination</h4>
                     <div className="ms-2 ">
                         <span className=" d-inline ">
                             

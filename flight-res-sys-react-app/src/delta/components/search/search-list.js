@@ -6,7 +6,7 @@ const SearchList = ({searchData}) => {
             {
                 searchData.length > 0 ?
                 <div>
-                    <h3>Search Results</h3>
+                    <h6>Search Results</h6>
                     <ul className="list-group">
                         <li className="list-group-item">
                             <div className="row">
