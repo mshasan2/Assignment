@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_Base = "http://localhost:4000/api";
+// const API_Base = "http://localhost:4000/api";
+
+const API_Base = process.env.REACT_APP_API_URL;
 const API_Flights = `${API_Base}/flights`;
 
 // export const getFlights = async () => {

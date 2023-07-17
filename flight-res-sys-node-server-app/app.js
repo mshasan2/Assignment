@@ -13,5 +13,6 @@ app.use(express.json());
 mongoose.connect(CONNECTION_STRING);
 FlightController(app);
 
-app.get('/hello', (req, res) => {res.sendStatus(200)})
+app.get('/hello', (req, res) => {res.sendStatus(200)});
+app.get('', (req, res) => res.send('Node Server is now live!'));
 app.listen(4000)
