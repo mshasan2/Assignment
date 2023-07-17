@@ -17,10 +17,14 @@ const searchFlights = async (req, res) => {
 }
 
 const suggest = async (req, res) => {
-    const query = req.params.query;
-    const suggestions = await flightsDao.suggest(query);
-    res.json(suggestions);
-
+    if (req.params.query) {
+        const query = req.params.query; 
+        const flights = await flightsDao.suggest(query);
+        res.status(200).json(flights);
+    }
+    else {
+        res.status(400).send("Invalid Input");
+    }
 }
 
 export default (app) => {
@@ -63,7 +67,8 @@ export default (app) => {
      * responses:
      * 200:
      * description: Success
-     * 
+     * 400:
+     * description: Invalid Input
      */ 
     app.get('/api/flights/suggest/:query', suggest);
 }

@@ -3,7 +3,7 @@ import flightsModel from "./flights-model.js";
 export const findFlights = () => flightsModel.find();
 
 export const searchFlightsOnOrigin = async (query) => {
-    const flights = await flightsModel.find({
+    const flights_full_name = await flightsModel.find({
         $expr: {
             $regexMatch: {
                 input: "$origin_full_name",
@@ -11,11 +11,20 @@ export const searchFlightsOnOrigin = async (query) => {
             }
         }
     })
-    return flights;
+    const flights_code_name = await flightsModel.find({
+        $expr: {
+            $regexMatch: {
+                input: "$origin",
+                regex: new RegExp(query, "i")
+            }
+        }
+    })
+    const combinedUniqueElements = Array.from(new Set([...flights_full_name, ...flights_code_name]));
+    return combinedUniqueElements;
 };
 
 export const searchFlightsOnDestination = async (query) => {
-    const flights = await flightsModel.find({
+    const flights_full_name = await flightsModel.find({
         $expr: {
             $regexMatch: {
                 input: "$destination_full_name",
@@ -23,7 +32,16 @@ export const searchFlightsOnDestination = async (query) => {
             }
         }
     })
-    return flights;
+    const flights_code_name = await flightsModel.find({
+        $expr: {
+            $regexMatch: {
+                input: "$destination",
+                regex: new RegExp(query, "i")
+            }
+        }
+    })
+    const combinedUniqueElements = Array.from(new Set([...flights_full_name, ...flights_code_name]));
+    return combinedUniqueElements;
 };
 
 
