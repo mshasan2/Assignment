@@ -1,12 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as service from "./flights-service";
 
-// export const getFlightsThunk = createAsyncThunk(
-//     "flights/getFlights", async () => {
-//         return await service.getFlights();
-//     }
-// );
-
 export const searchFlightsByOriginThunk = createAsyncThunk(
     "flights/searchFlightsByOrigin", async (searchTerm) => {
         return await service.searchFlightsByOrigin(searchTerm);
