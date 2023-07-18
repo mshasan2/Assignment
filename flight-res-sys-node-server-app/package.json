@@ -5,7 +5,7 @@
   "description": "Node server app for flight reservation system",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit",
+    "test": "mocha",
     "start": "node app.js"
   },
   "author": "Mohammed Sadath Hasan",
