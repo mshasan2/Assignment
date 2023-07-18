@@ -65,7 +65,104 @@ origin (query parameter): Origin airport (string)
 destination (query parameter): Destination airport (string)  
 **Responses:**  
 200: Success (JSON array of flight data)  
-400: Invalid search (Error message)  
+400: Invalid search (Error message) 
+
+<details>
+  <summary>Example Payloads</summary>
+  
+  <details>
+        <summary>Searching flights based on destination</summary>
+        <p>GET http://localhost:4000/api/flights/search?destination=Malaga</p>
+        
+        
+    [
+    {
+        "_id": "64af2a9b88e6c467048a9cfa",
+        "id": 291480,
+        "created_at": "2019-09-20T00:36:44.000Z",
+        "updated_at": "2019-09-20T00:36:44.000Z",
+        "flight_identifier": "b4131042-7935-486f-bbaa-131819a5b356",
+        "flt_num": 2594,
+        "scheduled_origin_gate": "1",
+        "scheduled_destination_gate": "Any",
+        "out_gmt": "2019-02-10T00:51:46.000Z",
+        "in_gmt": "2019-02-09 21:16:09",
+        "off_gmt": "2019-02-09 19:58:59",
+        "on_gmt": "2019-02-09 21:10:45",
+        "destination": "AGP",
+        "origin": "SDR",
+        "destination_full_name": "Malaga",
+        "origin_full_name": "Santander"
+    },
+    {
+        "_id": "64af2a9b88e6c467048a9e96",
+        "id": 292225,
+        "created_at": "2019-09-20T00:36:44.000Z",
+        "updated_at": "2019-09-20T00:36:44.000Z",
+        "flight_identifier": "243e04fd-5953-4033-9bc0-3e0e715f10b3",
+        "flt_num": 7401,
+        "scheduled_origin_gate": "Any",
+        "scheduled_destination_gate": "Any",
+        "out_gmt": "2019-02-10T02:05:55.000Z",
+        "in_gmt": "2019-02-09 22:47:48",
+        "off_gmt": "2019-02-09 21:21:18",
+        "on_gmt": "2019-02-09 22:41:17",
+        "destination": "AGP",
+        "origin": "ALG",
+        "destination_full_name": "Malaga",
+        "origin_full_name": "Houari Boumediene"
+    },
+    {
+        "_id": "64af2a9b88e6c467048a9f52",
+        "id": 293105,
+        "created_at": "2019-09-20T00:36:44.000Z",
+        "updated_at": "2019-09-20T00:36:44.000Z",
+        "flight_identifier": "be80a1f3-a2eb-4a05-8f38-c0836eeac1b0",
+        "flt_num": 1138,
+        "scheduled_origin_gate": "Any",
+        "scheduled_destination_gate": "Any",
+        "out_gmt": "2019-02-10T02:40:12.000Z",
+        "in_gmt": "2019-02-09 23:06:28",
+        "off_gmt": "2019-02-09 21:54:42",
+        "on_gmt": "2019-02-09 23:00:07",
+        "destination": "AGP",
+        "origin": "LIS",
+        "destination_full_name": "Malaga",
+        "origin_full_name": "Lisbon"
+    }
+    ]
+  </details>
+
+  <details>
+        <summary>Searching flights based on Origin</summary>
+        <p>GET http://localhost:4000/api/flights/search?origin=Santander</p>
+        
+
+        
+    [
+    {
+        "_id": "64af2a9b88e6c467048a9cfa",
+        "id": 291480,
+        "created_at": "2019-09-20T00:36:44.000Z",
+        "updated_at": "2019-09-20T00:36:44.000Z",
+        "flight_identifier": "b4131042-7935-486f-bbaa-131819a5b356",
+        "flt_num": 2594,
+        "scheduled_origin_gate": "1",
+        "scheduled_destination_gate": "Any",
+        "out_gmt": "2019-02-10T00:51:46.000Z",
+        "in_gmt": "2019-02-09 21:16:09",
+        "off_gmt": "2019-02-09 19:58:59",
+        "on_gmt": "2019-02-09 21:10:45",
+        "destination": "AGP",
+        "origin": "SDR",
+        "destination_full_name": "Malaga",
+        "origin_full_name": "Santander"
+    }
+    ]
+
+</details>
+
+</details>
 
 ### Suggest Airports
 **Endpoint:** ```/api/flights/suggest/:query```  
@@ -75,15 +172,52 @@ destination (query parameter): Destination airport (string)
 query (path parameter): Query string (string)  
 **Responses:**  
 200: Success (JSON array of suggested airport names)
+400: Invalid Input (Error message) 
+
+<details>
+  <summary>Example payloads</summary>
+  <p>Getting suggested airport names </p>
+  <p>
+    GET http://localhost:4000/api/flights/suggest/bos
+  </p>
+  
+````
+[
+    "Logan Intl",
+    "Los Cabos Intl"
+]
+````
+<p>
+    GET http://localhost:4000/api/flights/suggest/san 
+</p>
+
+    [
+        "Mineta San Jose Intl",
+        "San Angelo Regl/mathis",
+        "San Antonio Intl",
+        "San Diego Intl",
+        "San Francisco Intl",
+        "San Giusto",
+        "San Luis Obispo Co Regl",
+        "San Pablo"
+    ]
+
+
+
+
+</details>
 
 #### Usage
 
 To use the API, make HTTP GET requests to the specified endpoints. For example, to search for flights from a specific origin, use the following request:  
 GET ```http://localhost:4000/api/flights/search?origin=JFK```  
-Sample Output: 
 
 To get airport name suggestions, use:  
 GET ```http://localhost:4000/api/flights/suggest/air```  
-Sample Output:
 
-Video: (Link to be added)
+
+
+
+### Video: (Link to be added)
+
+### Requirements and Screenshots: (To be added)
