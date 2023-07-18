@@ -47,7 +47,6 @@ const SearchComponent = () => {
     }
 
     const suggestedArrayClickHandler = (station) => {
-        console.log("clicked");
         setSuggestSearch(station);
         setsuggestedArray([]);
         searchFlightDetails(station);
