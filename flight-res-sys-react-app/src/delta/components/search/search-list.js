@@ -40,10 +40,10 @@ const SearchList = ({searchData}) => {
                                             {flight.in_gmt}
                                         </div>
                                         <div className="col-3">
-                                            {`${flight.origin_full_name} ${flight.origin}`}
+                                            {`${flight.origin_full_name} (${flight.origin})`}
                                         </div> 
                                         <div className="col-3">
-                                            {`${flight.destination_full_name} ${flight.destination}`}
+                                            {`${flight.destination_full_name} (${flight.destination})`}
                                         </div>  
                                         <div className="col-1">
                                             {flight.scheduled_origin_gate}
