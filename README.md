@@ -218,6 +218,5 @@ GET ```http://localhost:4000/api/flights/suggest/air```
 
 
 
-### Video: (Link to be added)
-
-### Requirements and Screenshots: (To be added)
+### Demo Video: https://www.youtube.com/watch?v=Z34N5n1orWU
+Video Description: The above video contains a demo of the Application created for the ODS Full Stack Assignment. The video showcases the auto-suggest feature as well as the search feature created as part of the ODS Full Stack Assignment.
