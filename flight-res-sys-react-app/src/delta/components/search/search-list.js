@@ -6,25 +6,25 @@ const SearchList = ({searchData}) => {
             {
                 searchData.length > 0 ?
                 <div>
-                    <h6>Search Results</h6>
+                    <h6 className="ms-1 mt-1">Search Results</h6>
                     <ul className="list-group">
                         <li className="list-group-item">
                             <div className="row">
                                 <div className="col-1">
-                                    Flight No.
+                                    <b>Flight No.</b>
                                 </div>
                                 <div className="col-2">
-                                    Departure Time
+                                    <b>Departure Time</b>
                                 </div>
                                 <div className="col-3">
-                                    Origin 
+                                    <b>Origin</b>
                                 </div>
                                 
                                 <div className="col-3">
-                                    Destination 
+                                    <b>Destination</b> 
                                 </div>
                                 <div className="col-1">
-                                    Gate
+                                    <b>Gate</b>
                                 </div>
                             </div>
                         </li>

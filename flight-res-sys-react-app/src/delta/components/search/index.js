@@ -40,7 +40,6 @@ const SearchComponent = () => {
 
     const searchFlightDetails = (station) => {
         if(searchType === "origin") {
-            
             dispatch(searchFlightsByOriginThunk(station))
         } else {
             dispatch(searchFlightsByDestinationThunk(station))
@@ -48,8 +47,9 @@ const SearchComponent = () => {
     }
 
     const suggestedArrayClickHandler = (station) => {
-        setsuggestedArray([]);
+        console.log("clicked");
         setSuggestSearch(station);
+        setsuggestedArray([]);
         searchFlightDetails(station);
     }
 
@@ -90,7 +90,7 @@ const SearchComponent = () => {
                     </div>
 
 
-                    <div className="input-group mb-3">
+                    <div className="input-group mb-1">
             
                         <input className="form-control"
                             onChange={suggestSearchHandler}
