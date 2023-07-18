@@ -5,11 +5,6 @@ import axios from "axios";
 const API_Base = process.env.REACT_APP_API_URL;
 const API_Flights = `${API_Base}/flights`;
 
-// export const getFlights = async () => {
-//     const response =  await axios.get(API_Flights);
-//     return response.data;
-// }
-
 export const searchFlightsByOrigin = async (searchTerm) => {
     const response = await axios.get(`${API_Flights}/search?origin=${searchTerm}`);
     return response.data;
